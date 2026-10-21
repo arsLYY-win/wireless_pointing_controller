@@ -23,21 +23,25 @@ def get_mouse_position():
 running = True
 
 while running:
+    fire = False
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
+                fire = True
+                fire_x, fire_y = event.pos
                 crosshair_x, crosshair_y = event.pos
 
-                dx = crosshair_x - target_x
-                dy = crosshair_y - target_y
+    if fire:
+        dx = fire_x - target_x
+        dy = fire_y - target_y
 
-                if dx * dx + dy * dy <= target_radius * target_radius:
-                    score += 1
-                    target_x = random.randint(50, 750)
-                    target_y = random.randint(50, 550)
+        if dx * dx + dy * dy <= target_radius * target_radius:
+            score += 1
+            target_x = random.randint(50, 750)
+            target_y = random.randint(50, 550)
 
     crosshair_x, crosshair_y = get_mouse_position()
     screen.fill((30, 30, 30))
