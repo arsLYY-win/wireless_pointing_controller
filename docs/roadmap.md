@@ -7,7 +7,7 @@ Build a motion-controlled game input system, starting with a mouse-based prototy
 ## Milestones
 
 - [x] M0 — Development Environment & GitHub
-- [ ] M1 — Basic Pygame Target Game
+- [x] M1 — Basic Pygame Target Game
 - [ ] M2 — Input Abstraction & Latency Experiments
 - [ ] M3 — ESP32 Communication
 - [ ] M4 — IMU Motion Tracking
@@ -28,11 +28,11 @@ Build a motion-controlled game input system, starting with a mouse-based prototy
 - [x] M1.4 — Generate random targets
 - [x] M1.5 — Implement mouse hit detection
 - [x] M1.6 — Add scoring system
-- [ ] M1.7 — Implement custom crosshair (verify)
-- [ ] M1.8 — Separate input coordinates from game state (verify)
-- [ ] M1.9 — Create mouse input function (verify)
-- [ ] M1.10 — Abstract the fire action
-- [ ] M1.11 — Refactor, test, commit and push
+- [x] M1.7 — Implement custom crosshair (verify)
+- [x] M1.8 — Separate input coordinates from game state (verify)
+- [x] M1.9 — Create mouse input function (verify)
+- [x] M1.10 — Abstract the fire action
+- [x] M1.11 — Refactor, test, commit and push
 
 ### Completion Criteria
 

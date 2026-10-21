@@ -32,7 +32,6 @@ while running:
             if event.button == 1:
                 fire = True
                 fire_x, fire_y = event.pos
-                crosshair_x, crosshair_y = event.pos
 
     if fire:
         dx = fire_x - target_x
