@@ -4,6 +4,7 @@ import random
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Wireless Pointing Controller")
+pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
 
@@ -13,6 +14,12 @@ target_y = random.randint(50, 550)
 
 score = 0
 
+
+def get_mouse_position():
+    x, y = pygame.mouse.get_pos()
+    return x, y
+
+
 running = True
 
 while running:
@@ -21,14 +28,18 @@ while running:
             running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_x, mouse_y = event.pos
-            dx = mouse_x - target_x
-            dy = mouse_y - target_y
-            if dx * dx + dy * dy <= target_radius * target_radius:
-                target_x = random.randint(50, 750)
-                target_y = random.randint(50, 550)
-                score += 1
+            if event.button == 1:
+                crosshair_x, crosshair_y = event.pos
 
+                dx = crosshair_x - target_x
+                dy = crosshair_y - target_y
+
+                if dx * dx + dy * dy <= target_radius * target_radius:
+                    score += 1
+                    target_x = random.randint(50, 750)
+                    target_y = random.randint(50, 550)
+
+    crosshair_x, crosshair_y = get_mouse_position()
     screen.fill((30, 30, 30))
 
     pygame.draw.circle(screen, (255, 80, 80), (target_x, target_y), target_radius)
@@ -36,6 +47,46 @@ while running:
     score_text = font.render(f"Score: {score}", True, (255, 255, 255))
     screen.blit(score_text, (20, 20))
 
+    crosshair_color = (255, 255, 255)
+    crosshair_radius = 12
+    crosshair_gap = 6
+    crosshair_length = 20
+
+    pygame.draw.circle(
+        screen, crosshair_color, (crosshair_x, crosshair_y), crosshair_radius, 2
+    )
+
+    pygame.draw.line(
+        screen,
+        crosshair_color,
+        (crosshair_x - crosshair_length, crosshair_y),
+        (crosshair_x - crosshair_gap, crosshair_y),
+        2,
+    )
+
+    pygame.draw.line(
+        screen,
+        crosshair_color,
+        (crosshair_x + crosshair_gap, crosshair_y),
+        (crosshair_x + crosshair_length, crosshair_y),
+        2,
+    )
+
+    pygame.draw.line(
+        screen,
+        crosshair_color,
+        (crosshair_x, crosshair_y - crosshair_length),
+        (crosshair_x, crosshair_y - crosshair_gap),
+        2,
+    )
+
+    pygame.draw.line(
+        screen,
+        crosshair_color,
+        (crosshair_x, crosshair_y + crosshair_gap),
+        (crosshair_x, crosshair_y + crosshair_length),
+        2,
+    )
     pygame.display.flip()
     clock.tick(60)
 
